@@ -14,6 +14,12 @@ namespace LcdDisplay.Model
 
     public enum LineParserResultStatus
     {
-        ValidLine
+        ValidLine,
+        SizeNotSent,
+        NumberNotSent,
+        SeparatorNotSent,
+        EmptyString,
+        InvalidarCharInSize,
+        InvalidarCharInNumber
     }
 }
