@@ -27,6 +27,7 @@ namespace LcdDisplay.Model
 
                 LineParser parser = new LineParser(item);
                 element.LineStatus = parser.Parse();
+                element.SourceText = item;
 
                 if (processingMustStop)
                 {

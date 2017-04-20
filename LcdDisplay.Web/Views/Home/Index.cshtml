@@ -57,6 +57,7 @@
                     </div>
                     <div>
                         <textarea id="input" style="width: 100%; padding: 10px;" placeholder="Acá las líneas"></textarea>
+                        <input id="btnClear" class="btn btn-danger" style="margin: 5px;" type="button" value="Limpiar" />
                         <input id="btnSend" class="btn btn-primary" style="margin: 5px;" type="button" value="Procesar" />
                     </div>
                 </div>
@@ -67,7 +68,12 @@
                     <div class="card-block">
                         <h4 class="card-title"><a href="#">Log</a></h4>
                         <p class="card-text">Acá verás que pasa con la ejecución.</p>
+
+                        <div id="status">
+
+                        </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -112,6 +118,28 @@
         var siteUrlPrefix = '@Url.Content("~/")';
         siteUrlPrefix = siteUrlPrefix.substring(1, siteUrlPrefix.length);
 
+        var infoMessages = new Array();
+
+        //0
+        infoMessages.push("Ingresaste muy bien el número, lo debes estar viendo :)");
+        //1
+        infoMessages.push("¿y el tamaño? lo has olvidado");
+        //2
+        infoMessages.push("Si no ingresas el número no podemos mostrate nada");
+        //3
+        infoMessages.push("Ahhhh necesitamos la coma...");
+        //4
+        infoMessages.push("Huy, pero envíanos algo para poder trabajar...");
+        //5
+        infoMessages.push("No podemos hacer nada si el tamaño no es un dígito :(, son las condiciones");
+        //6
+        infoMessages.push("¿y cómo pintamos ese caracter raro? sólo sabemos de dígitos");
+        //7
+        infoMessages.push("No no no, el tamaño va de 1 a 10");
+        //8
+        infoMessages.push("Has finalizado :)");
+
+
         function ajaxPost(controller, method, data, fx) {
 
             var url = "/" + siteUrlPrefix + controller + "/" + method;
@@ -131,7 +159,19 @@
             });
         }
 
+        function clearStatusMessages() {
+            $("#status").empty();
+        }
+
+        function addStatusMessage(message) {
+            $("#status").append("<p>" + message + "</p>");
+        }
+
         $(document).ready(function () {
+
+            $("#btnClear").on("click", function () {
+                $("#input").val('');
+            });
 
             $("#btnSend").on("click", function () {
 
@@ -140,34 +180,34 @@
                     if (success) {
 
                         $("#display tr").empty();
+                        clearStatusMessages();
 
                         data = data.Data;
 
                         if (data != null && data.length > 0) {
 
-                            console.log("Data is right");
-
                             for (var i = 0; i < data.length; i++) {
 
                                 var displayElement = data[i];
-                                console.log(displayElement);
+
+                                addStatusMessage(displayElement.SourceText + ": " + infoMessages[displayElement.LineStatus.Status]);
 
                                 if (displayElement.LineStatus.Status == 0) {
-
                                     for (var j = 0; j < displayElement.LcdDigits.length; j++) {
                                         var digit = displayElement.LcdDigits[j];
                                         $("#display tr:last").append("<td class='number_col'>" + digit + "<td>");
                                     }
-                                    
-                                } else {
-
                                 }
 
                                 $("#display").append("<tr><td>&nbsp;<td></tr>");
-                                
                             }
-                            
+
                         }
+                        else {
+                            addStatusMessage("Ups, el servidor no quiso devolvernos la información, esto es muy embarazoso :(");
+                        }
+                    } else {
+                        addStatusMessage("Ups, algo falló en la comunicación con el servidor, ¿será que te quedaste sin internet?, lo sentimos");
                     }
                 });
             });

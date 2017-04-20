@@ -14,14 +14,14 @@ namespace LcdDisplay.Model
 
     public enum LineParserResultStatus
     {
-        ValidLine,
-        SizeNotSent,
-        NumberNotSent,
-        SeparatorNotSent,
-        EmptyString,
-        InvalidarCharInSize,
-        InvalidarCharInNumber,
-        InvalidRangeForSize,
-        ProcessAlreadyDone
+        ValidLine = 0,
+        SizeNotSent = 1,
+        NumberNotSent = 2,
+        SeparatorNotSent = 3,
+        EmptyString = 4,
+        InvalidarCharInSize = 5,
+        InvalidarCharInNumber = 6,
+        InvalidRangeForSize = 7,
+        ProcessAlreadyDone = 8
     }
 }
