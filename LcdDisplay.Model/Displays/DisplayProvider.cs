@@ -22,6 +22,8 @@ namespace LcdDisplay.Model.Displays
         {
             switch (number)
             {
+                case "0":
+                    return GetDigitZero(size);
                 case "1":
                     return GetDigitOne(size);
                 case "2":
@@ -44,6 +46,15 @@ namespace LcdDisplay.Model.Displays
                     break;
             }
             return number;
+        }
+
+        private string GetDigitZero(int size)
+        {
+            return GetDots(size, false) + GetBlankSpaces(1) +
+                RepeatString(GetPipes(1, false) + GetBlankSpaces(size, false) + GetPipes(1, false) + GetLineBreak(), size) +
+                GetBlankSpaces(size) +
+                RepeatString(GetPipes(1, false) + GetBlankSpaces(size, false) + GetPipes(1, false) + GetLineBreak(), size) +
+                GetDots(size, false) + GetBlankSpaces(1);
         }
 
         private string GetDigitOne(int size)
@@ -81,7 +92,6 @@ namespace LcdDisplay.Model.Displays
                 GetBlankSpaces(size, false) + GetBlankSpaces(1) +
                 RepeatString(GetPipes(1, false) + GetBlankSpaces(size, false) + GetPipes(1), size) +
                 GetDots(size, false) + GetBlankSpaces(1) +
-                RepeatString(GetBlankSpaces(size, false) + GetPipes(1), size) +
                 RepeatString(GetBlankSpaces(size, false) + GetPipes(1), size);
         }
 
@@ -99,7 +109,7 @@ namespace LcdDisplay.Model.Displays
         {
             return
                 GetDots(size, false) + GetBlankSpaces(1) +
-                RepeatString(GetBlankSpaces(size, false) + GetPipes(1), size) +
+                RepeatString(GetPipes(1, false) + GetBlankSpaces(size, false) + GetLineBreak(), size) +
                 GetDots(size, false) + GetBlankSpaces(1) +
                 RepeatString(GetPipes(1, false) + GetBlankSpaces(size, false) + GetPipes(1), size) +
                 GetDots(size, false) + GetBlankSpaces(1);
@@ -109,10 +119,10 @@ namespace LcdDisplay.Model.Displays
         {
             return
                 GetDots(size, false) + GetBlankSpaces(1) +
-                RepeatString(GetPipes(1, false) + GetBlankSpaces(size, false) + GetLineBreak(), size) +
+                RepeatString(GetBlankSpaces(size, false) + GetPipes(1), size) +
                 GetDots(size, false) + GetBlankSpaces(1) +
                 RepeatString(GetBlankSpaces(size, false) + GetPipes(1), size) +
-                RepeatString(GetBlankSpaces(size, false) + GetPipes(1), size);
+                GetBlankSpaces(size);
         }
 
         private string GetDigitEight(int size)
