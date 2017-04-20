@@ -8,60 +8,97 @@ namespace LcdDisplay.Model
     public class LineParser
     {
         private String text;
+        private Char separator = ',';
+        private int sizeIndex = 0;
+        private int numberIndex = 1;
 
         public LineParser(String text)
         {
             this.text = text.Trim();
         }
 
-        public LineParserResult Parse()
+        private LineParserResultStatus CheckTextFormat()
         {
-            LineParserResult result = new LineParserResult();
+            LineParserResultStatus status = LineParserResultStatus.ValidLine;
 
             if (String.IsNullOrEmpty(text))
             {
-                result.Status = LineParserResultStatus.EmptyString;
-                return result;
+                return LineParserResultStatus.EmptyString;
             }
 
-            if (!text.Contains(','))
+            if (!text.Contains(separator))
             {
-                result.Status = LineParserResultStatus.NumberNotSent;
-                return result;
+                return LineParserResultStatus.NumberNotSent;
             }
 
-            String[] values = text.Split(',');
+            return status;
+        }
 
-            if (String.IsNullOrEmpty(values[0]))
+        private LineParserResultStatus CheckSizeFormat(string size)
+        {
+            LineParserResultStatus status = LineParserResultStatus.ValidLine;
+
+            if (String.IsNullOrEmpty(size))
             {
-                result.Status = LineParserResultStatus.SizeNotSent;
-                return result;
+                return LineParserResultStatus.SizeNotSent;
             }
 
             int sizeResult;
-            if (!int.TryParse(values[0], out sizeResult))
+            if (!int.TryParse(size, out sizeResult))
             {
-                result.Status = LineParserResultStatus.InvalidarCharInSize;
-                return result;
+                return LineParserResultStatus.InvalidarCharInSize;
             }
 
-            if (String.IsNullOrEmpty(values[1]))
+            return status;
+        }
+
+        private LineParserResultStatus CheckNumberFormat(string number)
+        {
+            LineParserResultStatus status = LineParserResultStatus.ValidLine;
+
+            if (String.IsNullOrEmpty(number))
             {
-                result.Status = LineParserResultStatus.NumberNotSent;
-                return result;
+                return LineParserResultStatus.NumberNotSent;
             }
 
             int numberResult;
-            if (!int.TryParse(values[1], out numberResult))
+            if (!int.TryParse(number, out numberResult))
             {
-                result.Status = LineParserResultStatus.InvalidarCharInNumber;
+                return LineParserResultStatus.InvalidarCharInNumber;
+            }
+
+            return status;
+        }
+
+        public LineParserResult Parse()
+        {
+            LineParserResult result = new LineParserResult();
+            
+            result.Status = CheckTextFormat();
+            if (result.Status != LineParserResultStatus.ValidLine)
+            {
+                return result;
+            }           
+
+            String[] values = text.Split(separator);
+            String sizeString = values[sizeIndex];
+            String numberString = values[numberIndex];
+
+            result.Status = CheckSizeFormat(sizeString);
+            if (result.Status != LineParserResultStatus.ValidLine)
+            {
                 return result;
             }
 
-            result.Size = sizeResult;
-            result.Number = numberResult.ToString();
+            result.Status = CheckNumberFormat(numberString);
+            if (result.Status != LineParserResultStatus.ValidLine)
+            {
+                return result;
+            }
 
-            result.Status = LineParserResultStatus.ValidLine;
+            result.Size = int.Parse(sizeString);
+            result.Number = numberString;
+
             return result;
         }
     }
