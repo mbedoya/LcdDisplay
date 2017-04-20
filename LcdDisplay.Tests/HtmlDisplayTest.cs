@@ -17,7 +17,7 @@ namespace LcdDisplay.Tests
         }
 
         [TestMethod]
-        public void GetFromDigit_NumberInSize2IsWhatExpected_ExpectedText()
+        public void GetFromDigit_Number1InSize2IsWhatExpected_ExpectedText()
         {
             HtmlDisplay display = new HtmlDisplay();
             String result = display.GetFromDigit(2, "1");
@@ -25,11 +25,19 @@ namespace LcdDisplay.Tests
         }
 
         [TestMethod]
-        public void GetFromDigit_NumberInSize1IsWhatExpected_ExpectedText()
+        public void GetFromDigit_Number1InSize1IsWhatExpected_ExpectedText()
         {
             HtmlDisplay display = new HtmlDisplay();
             String result = display.GetFromDigit(1, "1");
             Assert.AreEqual("&nbsp;<br />|<br />&nbsp;<br />|<br />&nbsp;<br />", result);
+        }
+
+        [TestMethod]
+        public void GetFromDigit_Number2InSize2IsWhatExpected_ExpectedText()
+        {
+            HtmlDisplay display = new HtmlDisplay();
+            String result = display.GetFromDigit(2, "2");
+            Assert.AreEqual("--&nbsp;<br />&nbsp;&nbsp;|<br />&nbsp;&nbsp;|<br />--&nbsp;<br />|&nbsp;&nbsp;<br />|&nbsp;&nbsp;<br />--&nbsp;<br />", result);
         }
     }
 }

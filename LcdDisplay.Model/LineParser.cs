@@ -49,6 +49,11 @@ namespace LcdDisplay.Model
                 return LineParserResultStatus.InvalidarCharInSize;
             }
 
+            if (sizeResult < 1 || sizeResult > 10)
+            {
+                return LineParserResultStatus.InvalidRangeForSize;
+            }
+
             return status;
         }
 

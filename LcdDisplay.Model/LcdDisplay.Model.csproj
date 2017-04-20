@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DisplayElement.cs" />
+    <Compile Include="DisplayManager.cs" />
+    <Compile Include="Displays\DisplayProvider.cs" />
+    <Compile Include="Displays\DisplayFactory.cs" />
     <Compile Include="Displays\DisplayResult.cs" />
     <Compile Include="Displays\HtmlDisplay.cs" />
     <Compile Include="LineParser.cs" />

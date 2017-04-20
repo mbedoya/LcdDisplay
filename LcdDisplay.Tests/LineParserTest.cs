@@ -10,7 +10,7 @@ namespace LcdDisplay.Tests
         [TestMethod]
         public void Parse_BasicLineIsValid_LineValidResult()
         {
-            String line = "0,0";
+            String line = "1,0";
             LineParserResult result = new LineParser(line).Parse();
             Assert.AreEqual(true, result.Status == LineParserResultStatus.ValidLine);
         }
@@ -18,7 +18,7 @@ namespace LcdDisplay.Tests
         [TestMethod]
         public void Parse_BasicLineIsValid_SizeReturned()
         {
-            String line = "0,0";
+            String line = "1,0";
             LineParserResult result = new LineParser(line).Parse();
             Assert.AreEqual(true, result.Size >= 0);
         }
@@ -26,7 +26,7 @@ namespace LcdDisplay.Tests
         [TestMethod]
         public void Parse_BasicLineIsValid_NumberReturned()
         {
-            String line = "0,0";
+            String line = "1,0";
             LineParserResult result = new LineParser(line).Parse();
             Assert.AreEqual(true, !String.IsNullOrEmpty(result.Number));
         }
@@ -42,7 +42,7 @@ namespace LcdDisplay.Tests
         [TestMethod]
         public void Parse_NumberNotSent_NumberNotSentResult()
         {
-            String line = "0,";
+            String line = "1,";
             LineParserResult result = new LineParser(line).Parse();
             Assert.AreEqual(true, result.Status == LineParserResultStatus.NumberNotSent);
         }
@@ -50,7 +50,7 @@ namespace LcdDisplay.Tests
         [TestMethod]
         public void Parse_SeparatorNotSent_SeparatorNotSentResult()
         {
-            String line = "00";
+            String line = "11";
             LineParserResult result = new LineParser(line).Parse();
             Assert.AreEqual(true, result.Status == LineParserResultStatus.NumberNotSent);
         }
@@ -93,6 +93,22 @@ namespace LcdDisplay.Tests
             String line = "2,3";
             LineParserResult result = new LineParser(line).Parse();
             Assert.AreEqual(2, result.Size);
+        }
+
+        [TestMethod]
+        public void Parse_SizeIsLowerThanExpecetd_InvalidRangeForSize()
+        {
+            String line = "0,1";
+            LineParserResult result = new LineParser(line).Parse();
+            Assert.AreEqual(true, result.Status == LineParserResultStatus.InvalidRangeForSize);
+        }
+
+        [TestMethod]
+        public void Parse_SizeIsGreaterThanExpecetd_InvalidRangeForSize()
+        {
+            String line = "11,1";
+            LineParserResult result = new LineParser(line).Parse();
+            Assert.AreEqual(true, result.Status == LineParserResultStatus.InvalidRangeForSize);
         }
         
     }

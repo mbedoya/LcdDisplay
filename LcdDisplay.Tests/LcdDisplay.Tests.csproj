@@ -104,6 +104,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LineParserTest.cs" />
     <Compile Include="HtmlDisplayTest.cs" />
+    <Compile Include="DisplayManagerTest.cs" />
+    <Compile Include="IntegrationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

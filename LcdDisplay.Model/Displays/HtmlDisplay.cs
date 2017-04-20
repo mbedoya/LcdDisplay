@@ -5,43 +5,22 @@ using System.Text;
 
 namespace LcdDisplay.Model.Displays
 {
-    public class HtmlDisplay
+    public class HtmlDisplay : DisplayProvider
     {
         public HtmlDisplay()
         {
 
         }
 
-        public String GetFromDigit(int size, string number)
+        public override string GetLineBreak()
         {
-            switch (number)
-            {
-                case "1":
-                    return GetDigitOne(size, number);
-                default:
-                    break;
-            }
-            return number;
+            return "<br />";
         }
 
-        private string GetDigitOne(int size, string number)
+        public override string GetEspaceChar()
         {
-            return GetBlankSpaces(1) + GetPipes(size) + GetBlankSpaces(1) + GetPipes(size) + GetBlankSpaces(1);
+            return "&nbsp;";
         }
-
-        private string GetBlankSpaces(int count)
-        {
-            return RepeatString("&nbsp;", count) + "<br />";
-        }
-
-        private string GetPipes(int count)
-        {
-            return RepeatString("|<br />", count);
-        }
-
-        private String RepeatString(string text, int count)
-        {
-            return String.Concat(Enumerable.Repeat(text, count));
-        }
+        
     }
 }

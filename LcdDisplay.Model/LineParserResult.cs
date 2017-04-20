@@ -20,6 +20,8 @@ namespace LcdDisplay.Model
         SeparatorNotSent,
         EmptyString,
         InvalidarCharInSize,
-        InvalidarCharInNumber
+        InvalidarCharInNumber,
+        InvalidRangeForSize,
+        ProcessAlreadyDone
     }
 }
