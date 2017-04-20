@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Displays\DisplayResult.cs" />
+    <Compile Include="Displays\HtmlDisplay.cs" />
     <Compile Include="LineParser.cs" />
     <Compile Include="LineParserResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
