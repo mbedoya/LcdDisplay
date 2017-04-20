@@ -92,7 +92,8 @@ namespace LcdDisplay.Model.Displays
                 GetBlankSpaces(size, false) + GetBlankSpaces(1) +
                 RepeatString(GetPipes(1, false) + GetBlankSpaces(size, false) + GetPipes(1), size) +
                 GetDots(size, false) + GetBlankSpaces(1) +
-                RepeatString(GetBlankSpaces(size, false) + GetPipes(1), size);
+                RepeatString(GetBlankSpaces(size, false) + GetPipes(1), size) +
+                GetBlankSpaces(size);
         }
 
         private string GetDigitFive(int size)
