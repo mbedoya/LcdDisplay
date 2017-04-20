@@ -45,3 +45,14 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Visual Studio
+LcdDisplay.v11.suo
+LcdDisplay.Model/bin
+LcdDisplay.Model/obj
+LcdDisplay.Web/bin
+LcdDisplay.Web/obj
+LcdDisplay.TO/bin
+LcdDisplay.TO/obj
+LcdDisplay.Tests/bin
+LcdDisplay.Tests/obj
