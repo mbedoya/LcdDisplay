@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using LcdDisplay.Model;
 
 namespace LcdDisplay.Tests
 {
@@ -11,7 +12,7 @@ namespace LcdDisplay.Tests
         {
             String line = "0,0";
             LineParserResult result = new LineParser(line).Parse();
-            Assert.AreEqual(true, result.Status == LineParserResult.ValidLine);
+            Assert.AreEqual(true, result.Status == LineParserResultStatus.ValidLine);
         }
     }
 }

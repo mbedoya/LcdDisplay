@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LcdDisplay.Web", "LcdDispla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LcdDisplay.Tests", "LcdDisplay.Tests\LcdDisplay.Tests.csproj", "{DF850CA5-C259-4B55-A9A4-9973B819FAE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LcdDisplay.Model", "LcdDisplay.Model\LcdDisplay.Model.csproj", "{48BB599A-6542-47D6-BEF5-AC5B5A690E8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{DF850CA5-C259-4B55-A9A4-9973B819FAE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF850CA5-C259-4B55-A9A4-9973B819FAE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF850CA5-C259-4B55-A9A4-9973B819FAE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48BB599A-6542-47D6-BEF5-AC5B5A690E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48BB599A-6542-47D6-BEF5-AC5B5A690E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48BB599A-6542-47D6-BEF5-AC5B5A690E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48BB599A-6542-47D6-BEF5-AC5B5A690E8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
